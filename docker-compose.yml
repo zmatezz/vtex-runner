@@ -1,0 +1,18 @@
+services:
+  app:
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./assets/spreadsheets/app:/app/assets/spreadsheets/app
+      - ./assets/spreadsheets/logs:/app/assets/spreadsheets/logs
+    environment:
+      - PORT=${PORT}
+      - VTEX_URL_API=${VTEX_URL_API}
+      - VTEX_API_APPKEY=${VTEX_API_APPKEY}
+      - VTEX_API_APPTOKEN=${VTEX_API_APPTOKEN}
+      - LOCAL_API_URL=${LOCAL_API_URL}
+      - ML_URL_API=${ML_URL_API}
+      - ML_APPTOKEN=${ML_APPTOKEN}
+      - ROOT_PATH_GENERATED_FILES=${ROOT_PATH_GENERATED_FILES}
+      - ROOT_PATH_READ_FILES=${ROOT_PATH_READ_FILES}
