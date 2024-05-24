@@ -6,8 +6,15 @@ import SkuBindingsControllers from "./controllers/vtex/SkuBindingsControllers";
 import SpecificationValueControllers from "./controllers/vtex/SpecificationValueControllers";
 import SkuSpecificationsControllers from "./controllers/vtex/SkuSpecificationsControllers";
 import ProductSpecification from "./controllers/vtex/ProductSpecificationControllers";
+import Inventory from "./controllers/vtex/InventoryControllers";
 
 const router = Router();
+
+//Rotas para Inventory
+router.get(
+  "/vtex/inventory/list-inventory-by-sku",
+  Inventory.listInventoryBySku
+);
 
 //Rotas para Products Specification
 router.get(
@@ -31,6 +38,10 @@ router.get(
 
 // Rotas para SKU Files
 router.get("/vtex/sku-files/get-sku-files", SkuFilesControllers.getSkuFiles);
+router.post(
+  "/vtex/sku-files/create-sku-files",
+  SkuFilesControllers.createSkuFiles
+);
 
 // Rotas para SKU Bindings
 router.post(
