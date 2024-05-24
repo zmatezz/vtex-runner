@@ -43,7 +43,10 @@ export async function getSkuFiles(req: Request, res: Response) {
             error.response.data
           );
 
-          notRetrievedSkuFiles.push(skuId);
+          notRetrievedSkuFiles.push({
+            SkuId: skuId,
+            Error: error.response.data,
+          });
         }
       })
     );
@@ -69,8 +72,8 @@ export async function getSkuFiles(req: Request, res: Response) {
 
       createSheet(
         "Not Retrieved Skus Files",
-        ["SkuId"],
-        notRetrievedSkuFiles.map((skuId) => ({ SkuId: skuId }))
+        ["SkuId", "Error"],
+        notRetrievedSkuFiles.map((item) => [item.skuId, item.error])
       );
     }
 
