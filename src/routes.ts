@@ -37,6 +37,8 @@ router.get(
 );
 
 // Rotas para SKU Files
+router.get("/vtex/sku-files/get-sku-images", SkuFilesControllers.getSkuImages);
+router.get("/vtex/sku-files/get-sku-images-from-url", SkuFilesControllers.getSkuImagesFromURL);
 router.get("/vtex/sku-files/get-sku-files", SkuFilesControllers.getSkuFiles);
 router.post(
   "/vtex/sku-files/create-sku-files",

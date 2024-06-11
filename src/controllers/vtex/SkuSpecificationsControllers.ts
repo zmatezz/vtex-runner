@@ -9,10 +9,8 @@ class SkuSpecificationsControllers {
     try {
       await getSkuSpecifications(req, res);
     } catch (error) {
-      console.error("Erro ao obter as especificações do SKUs:", error);
-      res
-        .status(500)
-        .json({ error: "Erro ao obter as especificações do SKUs" });
+      console.error("Error when getting SKUs specifications:", error);
+      res.status(500).json({ error: "Error when getting SKUs specifications" });
     }
   }
 
@@ -20,10 +18,10 @@ class SkuSpecificationsControllers {
     try {
       await associateSkuSpecifications(req, res);
     } catch (error) {
-      console.error("Erro ao associar as especificações do SKUs:", error);
+      console.error("Error when associating SKUs specifications:", error);
       res
         .status(500)
-        .json({ error: "Erro ao associar as especificações do SKUs" });
+        .json({ error: "Error when associating SKUs specifications" });
     }
   }
 
@@ -31,10 +29,8 @@ class SkuSpecificationsControllers {
     try {
       await updateSkuSpecifications(req, res);
     } catch (error) {
-      console.error("Erro ao atualizar as especificações do SKUs:", error);
-      res
-        .status(500)
-        .json({ error: "Erro ao atualizar as especificações do SKUs" });
+      console.error("Error updating SKU specifications:", error);
+      res.status(500).json({ error: "Error updating SKU specifications" });
     }
   }
 
@@ -43,14 +39,12 @@ class SkuSpecificationsControllers {
       await autoAssociateSkuSpecifications(req, res);
     } catch (error) {
       console.error(
-        "Erro ao realizar o processo de associação das especificações:",
+        "Error when performing the specification association process:",
         error
       );
-      res
-        .status(500)
-        .json({
-          error: "Erro ao realizar o processo de associação das especificações",
-        });
+      res.status(500).json({
+        error: "Error when performing the specification association process",
+      });
     }
   }
 }
