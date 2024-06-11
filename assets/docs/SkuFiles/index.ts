@@ -13,6 +13,33 @@
  *       500:
  *         description:  Error to get Sku Files for SKUs
  *
+ * /vtex/sku-files/get-sku-images:
+ *   get:
+ *     tags: [Sku Files]
+ *     summary: Recupera todas as imagens de cada SKU da planilha getSkuImages.
+ *     description: getSkuImages - Realiza um loop de requisições para a API Get SKU files com os Skus preenchidos na planilha getSkuImages, que de forma dinâmica são usados de parâmetros na URL. Os logs das requisições são gravados em duas planilhas "Skus Files" e "Not Retrieved Skus Images" | https://developers.vtex.com/docs/api-reference/catalog-api#get-/api/catalog/pvt/stockkeepingunit/-skuId-/file
+ *     requestBody:
+ *       required: false
+ *     responses:
+ *       200:
+ *         description:  SKUs Files retrivied Sucessfully
+ *       500:
+ *         description:  Error to get Sku Files for SKUs
+ * 
+ * /vtex/sku-files/get-sku-images-from-url?sku=2707627,2707631,2707605&ms=1000:
+ *   get:
+ *     tags: [Sku Files]
+ *     summary: Recupera todas as imagens de cada SKU.
+ *     description: getSkuImagesFromURL - Realiza um loop de requisições para a API Get SKU files com os Skus preenchidos na URL, que de forma dinâmica são usados de parâmetros na URL da requisição para VTEX. Os logs das requisições são gravados em duas planilhas "Skus Files" e "Not Retrieved Skus Images" | https://developers.vtex.com/docs/api-reference/catalog-api#get-/api/catalog/pvt/stockkeepingunit/-skuId-/file
+ *     requestBody:
+ *       required: false
+ *     responses:
+ *       200:
+ *         description:  SKUs Files retrivied Sucessfully
+ *       500:
+ *         description:  Error to get Sku Files for SKUs
+ * 
+ * 
  * /vtex/sku-files/create-sku-files:
  *   post:
  *     tags: [Sku Files]
