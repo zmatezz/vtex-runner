@@ -7,8 +7,8 @@ class SkuBindingsControllers {
     try {
       await changeNotificationWithSkuId(req, res);
     } catch (error) {
-      console.error("Erro para enviar as cargas de Sku:", error);
-      res.status(500).json({ error: "Erro para enviar as cargas de Sku" });
+      console.error("Error sending SKU notifications:", error);
+      res.status(500).json({ error: "Error sending SKU notifications" });
     }
   }
 
@@ -16,8 +16,8 @@ class SkuBindingsControllers {
     try {
       await changeNotificationWithSkuIdFromURL(req, res);
     } catch (error) {
-      console.error("Erro para enviar as cargas de Sku:", error);
-      res.status(500).json({ error: "Erro para enviar as cargas de Sku" });
+      console.error("Error sending SKU notifications:", error);
+      res.status(500).json({ error: "Error sending SKU notifications" });
     }
   }
 }
