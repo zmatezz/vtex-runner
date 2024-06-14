@@ -6,8 +6,8 @@ class SpecificationValueControllers {
     try {
       await createSpecificationsValues(req, res);
     } catch (error) {
-      console.error("Erro para criar as especificações:", error);
-      res.status(500).json({ error: "Erro para criar as especificações" });
+      console.error("Error to create specifications:", error);
+      res.status(500).json({ error: "Error to create specifications" });
     }
   }
 }
