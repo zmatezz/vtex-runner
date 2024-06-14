@@ -7,8 +7,13 @@ import SpecificationValueControllers from "./controllers/vtex/SpecificationValue
 import SkuSpecificationsControllers from "./controllers/vtex/SkuSpecificationsControllers";
 import ProductSpecification from "./controllers/vtex/ProductSpecificationControllers";
 import Inventory from "./controllers/vtex/InventoryControllers";
+import Category from "./controllers/vtex/CategoryControllers";
 
 const router = Router();
+
+//Rotas para Category
+router.get("/vtex/category/get-category-by-id", Category.getCategoryById);
+router.put("/vtex/category/update-category", Category.updateCategory);
 
 //Rotas para Inventory
 router.get(

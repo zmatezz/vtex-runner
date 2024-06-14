@@ -18,17 +18,20 @@ export function createSheet(
 
   let rowIndex = 2;
 
-  concludedNumbers.forEach((record, i) => {
+  concludedNumbers.forEach((record) => {
     headingColumnNames.forEach((heading, index) => {
-      let columnIndex = 1;
-      Object.entries(record).forEach(([key, value]) => {
-        if (typeof value === "number" || typeof value === "string") {
-          ws.cell(rowIndex, columnIndex).string(value.toString());
-        } else {
-          ws.cell(rowIndex, columnIndex).string("");
-        }
-        columnIndex++;
-      });
+      const value = record[heading];
+      if (value === null) {
+        ws.cell(rowIndex, index + 1).string("null");
+      } else if (value === undefined) {
+        ws.cell(rowIndex, index + 1).string("undefined");
+      } else if (typeof value === "number") {
+        ws.cell(rowIndex, index + 1).number(value);
+      } else if (typeof value === "boolean") {
+        ws.cell(rowIndex, index + 1).string(value.toString());
+      } else {
+        ws.cell(rowIndex, index + 1).string(value.toString());
+      }
     });
     rowIndex++;
   });
