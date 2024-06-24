@@ -17,9 +17,9 @@ export async function updateCategory(req: Request, res: Response) {
 
     await Promise.all(
       itemsList.map(async (item: any) => {
-        const categoryId = item[0].toString();
+        const categoryId = item[0];
         const name = item[1];
-        const fatherCategoryId = item[2] ? item[2].toString() : null;
+        const fatherCategoryId = item[2] ? item[2] : null;
         const boolean = false; // or true
 
         const requestBody = {
@@ -30,7 +30,10 @@ export async function updateCategory(req: Request, res: Response) {
           ShowInStoreFront: boolean,
           ShowBrandFilter: boolean,
           ActiveStoreFrontLink: boolean,
+          GlobalCategoryId: null,
         };
+
+        console.log(`requestBody:`, requestBody);
 
         try {
           const response = await processRequest(
@@ -47,12 +50,12 @@ export async function updateCategory(req: Request, res: Response) {
           updatedCategories.push({ Category: categoryId });
         } catch (error) {
           console.log(`
-          Error when updating Category: ${categoryId}: ${error.response.data}
+          Error when updating Category: ${categoryId}: ${error}
           `);
 
           conflictedCategories.push({
             categoryId,
-            message: error.response.data,
+            message: error.response
           });
 
           await new Promise((resolve) => setTimeout(resolve, ms));

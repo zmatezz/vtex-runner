@@ -26,18 +26,34 @@ export async function getCategoryById(req: Request, res: Response) {
             "GET"
           );
 
-          console.log(`Sucessful get general information about a category: ${categoryId}: `, response.data);
+          console.log(
+            `Sucessful get general information about a category: ${categoryId}: `,
+            response.data
+          );
 
           const filterResponse = {
             Id: response.data.Id,
             Name: response.data.Name,
             FatherCategoryId: response.data.FatherCategoryId,
+            Title: response.data.Title,
+            Description: response.data.Description,
+            Keywords: response.data.Keywords,
             IsActive: response.data.IsActive,
+            LomadeeCampaignCode: response.data.LomadeeCampaignCode,
+            AdWordsRemarketingCode: response.data.AdWordsRemarketingCode,
+            ShowInStoreFront: response.data.ShowInStoreFront,
+            ShowBrandFilter: response.data.ShowBrandFilter,
+            ActiveStoreFrontLink: response.data.ActiveStoreFrontLink,
+            GlobalCategoryId: response.data.GlobalCategoryId,
+            StockKeepingUnitSelectionMode: response.data.StockKeepingUnitSelectionMode,
+            Score: response.data.Score,
+            LinkId: response.data.LinkId,
             HasChildren: response.data.HasChildren,
+            TreePath: response.data.TreePath,
+            TreePathIds: response.data.TreePathIds,
           };
 
           retriviedCategories.push(filterResponse);
-
         } catch (error) {
           console.error(
             `Error to get general information about a category: ${categoryId}:`,
@@ -60,7 +76,7 @@ export async function getCategoryById(req: Request, res: Response) {
 
       createSheet(
         "Categories General Information",
-        ["Id", "Name", "FatherCategoryId", "IsActive", "HasChildren"],
+        ["Id", "Name", "FatherCategoryId", "Title", "Description", "Keywords", "IsActive", "LomadeeCampaignCode", "AdWordsRemarketingCode", "ShowInStoreFront", "ShowBrandFilter", "ActiveStoreFrontLink", "GlobalCategoryId", "StockKeepingUnitSelectionMode", "Score", "LinkId",  "HasChildren", "TreePath", "TreePathIds"],
         retriviedCategories
       );
     }
@@ -78,8 +94,14 @@ export async function getCategoryById(req: Request, res: Response) {
       );
     }
 
-    res.status(200).json({ message: "Categories general information retrivied Sucessfully" });
+    res
+      .status(200)
+      .json({
+        message: "Categories general information retrivied Sucessfully",
+      });
   } catch (error) {
-    res.status(500).json({ error: "Error to get general information about categories IDs" });
+    res
+      .status(500)
+      .json({ error: "Error to get general information about categories IDs" });
   }
 }
