@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { getProductSpecificationsByProductID } from "../../services/vtex/ProductSpecification/getProductSpecificationsByProductID";
 import { getProductSpecificationsAndTheirInformationByProductID } from "../../services/vtex/ProductSpecification/getProductSpecificationsAndTheirInformationByProductID";
+import { updateProductSpecificationByProductID } from "../../services/vtex/ProductSpecification/updateProductSpecificationByProductID";
 
 class ProductSpecificationControllers {
   async getProductSpecificationsByProductID(req: Request, res: Response) {
@@ -31,6 +32,17 @@ class ProductSpecificationControllers {
           error:
             "Error to get Specifications and their Information for for Products IDs",
         });
+    }
+  }
+
+  async updateProductSpecificationByProductID(req: Request, res: Response) {
+    try {
+      await updateProductSpecificationByProductID(req, res);
+    } catch (error) {
+      console.error("Error to update Product Specification", error);
+      res
+        .status(500)
+        .json({ error: "Error to update Product Specification" });
     }
   }
 }

@@ -8,6 +8,12 @@ export function createSheet(
   const wb = new xl.Workbook();
   const ws = wb.addWorksheet("Worksheet Name");
   const date = new Date();
+  let months = [
+    "Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"
+  ]
+
+  let monthNumber = date.getMonth();
+  let monthName = months[monthNumber]
 
   let headingRowIndex = 1;
   headingColumnNames.forEach((heading) => {
@@ -18,31 +24,32 @@ export function createSheet(
 
   let rowIndex = 2;
 
-  concludedNumbers.forEach((record) => {
+  concludedNumbers.forEach((record, i) => {
     headingColumnNames.forEach((heading, index) => {
-      const value = record[heading];
-      if (value === null) {
-        ws.cell(rowIndex, index + 1).string("null");
-      } else if (value === undefined) {
-        ws.cell(rowIndex, index + 1).string("undefined");
-      } else if (typeof value === "number") {
-        ws.cell(rowIndex, index + 1).number(value);
-      } else if (typeof value === "boolean") {
-        ws.cell(rowIndex, index + 1).string(value.toString());
-      } else {
-        ws.cell(rowIndex, index + 1).string(value.toString());
-      }
+      let columnIndex = 1;
+      Object.entries(record).forEach(([key, value]) => {
+        if (typeof value === "number" || typeof value === "string") {
+          ws.cell(rowIndex, columnIndex).string(value.toString());
+        } else {
+          ws.cell(rowIndex, columnIndex).string("");
+        }
+        columnIndex++;
+      });
     });
     rowIndex++;
   });
+  
+  const randomDigits = Math.floor(Math.random() * 1000000).toString().padStart(6, '0');
 
   const filePath = `${
     process.env.ROOT_PATH_GENERATED_FILES
-  }/${resultName}-${date.getDate()}-${
-    date.getMonth() + 1
-  }-${date.getFullYear()}-${date.getHours()}-${date.getMinutes()}.xlsx`;
+  }/${resultName} - ${date.getDate()}${
+    monthName
+  }${date.getFullYear()}-${date.getHours()}-${date.getMinutes()}_${randomDigits}.xlsx`;
 
   console.log("File log stored in:", filePath);
 
   wb.write(filePath);
 }
+
+

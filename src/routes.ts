@@ -30,6 +30,10 @@ router.get(
   "/vtex/get-product-specification-and-their-information-by-product-id",
   ProductSpecification.getProductSpecificationsAndTheirInformationByProductID
 );
+router.post(
+  "/vtex/update-product-specification-by-product-id",
+  ProductSpecification.updateProductSpecificationByProductID
+)
 
 // Rotas para Prices and Fixed Prices
 router.get(
